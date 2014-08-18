@@ -1,12 +1,12 @@
 package com.pengyifan.leetcode;
 
-import static org.junit.Assert.*;
-import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.CoreMatchers.hasItem;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 
 import java.util.List;
 
 import org.junit.Test;
-
 
 public class RestoreIpAddressesTest {
 
