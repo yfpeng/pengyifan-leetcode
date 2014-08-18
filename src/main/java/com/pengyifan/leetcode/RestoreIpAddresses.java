@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Given a string containing only digits, restore it by returning all possible
+ * valid IP address combinations.
+ */
 public class RestoreIpAddresses {
 
   public List<String> restoreIpAddresses(String s) {
@@ -28,7 +32,7 @@ public class RestoreIpAddresses {
     if (level > 4) {
       return;
     }
-    if (end - start >= 2 && s.charAt(start)=='0') {
+    if (end - start >= 2 && s.charAt(start) == '0') {
       return;
     }
     int i = Integer.parseInt(s.substring(start, end));

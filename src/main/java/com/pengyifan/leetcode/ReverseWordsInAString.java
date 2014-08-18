@@ -2,6 +2,9 @@ package com.pengyifan.leetcode;
 
 import java.util.Stack;
 
+/**
+ * Given an input string, reverse the string word by word.
+ */
 public class ReverseWordsInAString {
 
   public String reverseWords(String s) {
