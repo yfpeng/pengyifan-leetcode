@@ -16,7 +16,6 @@ public class ThreeSumTest {
   @Test
   public void test() {
     List<List<Integer>> actual = t.threeSum(new int[] { -1, 0, 1, 2, -1, -4 });
-    System.out.println(actual);
     assertEquals(2, actual.size());
     assertThat(actual, hasItem(Arrays.asList(-1, 0, 1)));
     assertThat(actual, hasItem(Arrays.asList(-1, -1, 2)));
