@@ -2,6 +2,9 @@ package com.pengyifan.leetcode;
 
 import com.pengyifan.leetcode.commons.ListNode;
 
+/**
+ * Sort a linked list using insertion sort.
+ */
 public class InsertionSortList {
 
   public ListNode insertionSortList(ListNode head) {
