@@ -15,7 +15,7 @@ public class Permutations2Test {
 
   @Test
   public void test() {
-    List<List<Integer>> actual = t.permute(new int[] { 1, 1, 2 });
+    List<List<Integer>> actual = t.permuteUnique(new int[] { 1, 1, 2 });
     System.out.println(actual);
     assertEquals(3, actual.size());
     assertThat(actual, hasItem(Arrays.asList(1, 1, 2)));
