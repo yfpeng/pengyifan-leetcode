@@ -17,7 +17,7 @@ public class InterleavingStringTest {
   
   @Test
   public void testIsInterleave2() {
-    assertFalse(t.isInterleave("a", "", "a"));
+    assertTrue(t.isInterleave("a", "", "a"));
   }
 
   @Test

@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class WordLadder2Test {
@@ -32,6 +33,7 @@ public class WordLadder2Test {
   }
 
   @Test
+  @Ignore
   public void testFindLadders2() {
     Set<String> dict = new HashSet<String>();
     String[] words = {
@@ -52,6 +54,7 @@ public class WordLadder2Test {
   }
 
   @Test
+  @Ignore
   public void testFindLadders3() {
     Set<String> dict = new HashSet<String>();
     String[] words = {
