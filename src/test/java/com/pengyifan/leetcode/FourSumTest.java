@@ -1,7 +1,8 @@
 package com.pengyifan.leetcode;
 
 import static org.hamcrest.CoreMatchers.hasItem;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 
 import java.util.Arrays;
 import java.util.List;
@@ -31,7 +32,6 @@ public class FourSumTest {
   public void testFourSum3() {
     List<List<Integer>> actual = t.fourSum(new int[] { -3, -2, -1, 0, 0, 1, 2,
         3 }, 0);
-    System.out.println(actual);
     assertEquals(8, actual.size());
     assertThat(actual, hasItem(Arrays.asList(-3, -2, 2, 3)));
     assertThat(actual, hasItem(Arrays.asList(-3, -1, 1, 3)));
