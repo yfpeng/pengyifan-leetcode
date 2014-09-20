@@ -7,159 +7,156 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 import java.util.Set;
 
+/**
+ * Given two words (start and end), and a dictionary, find the length of
+ * shortest transformation sequence from start to end, such that:
+ * <ul>
+ * <li>Only one letter can be changed at a time
+ * <li>Each intermediate word must exist in the dictionary
+ * </ul>
+ * For example,
+ * <p>
+ * Given:
+ * 
+ * <pre>
+ * start = "hit" 
+ * end = "cog" 
+ * dict = ["hot","dot","dog","lot","log"]
+ * </pre>
+ * 
+ * Returns
+ * 
+ * <pre>
+ * [
+ *     ["hit","hot","dot","dog","cog"],
+ *     ["hit","hot","lot","log","cog"]
+ * ]
+ * </pre>
+ * Note:
+ * <ul>
+ * <li>Return 0 if there is no such transformation sequence.
+ * <li>All words have the same length.
+ * <li>All words contain only lowercase alphabetic characters.
+ * </ul>
+ */
 public class WordLadder2 {
 
   public List<List<String>> findLadders(String start, String end,
       Set<String> dict) {
-    if (start == null || end == null || dict.isEmpty()) {
+    if (start == null || end == null) {
       return Collections.emptyList();
     }
-    Graph graph = buildGraph(dict, start, end);
-    List<List<String>> totalList = new ArrayList<List<String>>();
-    LinkedList<String> currentList = new LinkedList<String>();
 
-    Node startNode = graph.getNode(start);
-    Node endNode = graph.getNode(end);
-    findLadderHelper(startNode, endNode, graph, totalList, currentList);
-    return totalList;
-  }
+    dict.add(start);
+    dict.add(end);
+    Map<String, Set<String>> neighbours = createNeighbours(dict);
 
-  private Graph buildGraph(Set<String> dict, String start,
-      String end) {
+    List<List<String>> solutions = new ArrayList<List<String>>();
 
-    Graph graph = new Graph();
+    // BFS search queue
+    Queue<Node> queue = new LinkedList<Node>();
+    queue.offer(new Node(null, start, 1));
 
-    // add nodes
-    for (String s : dict) {
-      graph.addNode(new Node(s, false));
-    }
-    Node startNode = new Node(start, false);
-    Node endNode = new Node(end, false);
-
-    // add edges
-    List<Node> list = graph.getNodes();
-    
-    graph.addNode(startNode);
-    for (int i = 0; i < list.size(); i++) {
-      if (isOneLetterChanged(list.get(i).word, startNode.word)) {
-        graph.addEdge(startNode, list.get(i));
-      }
-    }
-    
-    graph.addNode(endNode);
-    for (int i = 0; i < list.size(); i++) {
-      if (isOneLetterChanged(list.get(i).word, endNode.word)) {
-        graph.addEdge(list.get(i), endNode);
-      }
-    }
-
-    for (int i = 0; i < list.size(); i++) {
-      for (int j = i + 1; j < list.size(); j++) {
-        if (isOneLetterChanged(list.get(i).word, list.get(j).word)) {
-          graph.addEdge(list.get(i), list.get(j));
-          graph.addEdge(list.get(j), list.get(i));
+    // BFS level
+    int previousLevel = 0;
+    // mark which nodes have been visited, to break infinite loop
+    Map<String, Integer> visited = new HashMap<String, Integer>();
+    while (!queue.isEmpty()) {
+      Node n = queue.poll();
+      if (end.equals(n.str)) {
+        // fine one path, check its length, if longer than previous path it's
+        // valid
+        // otherwise all possible short path have been found, should stop
+        if (previousLevel == 0 || n.level == previousLevel) {
+          previousLevel = n.level;
+          findPath(n, solutions);
+        } else {
+          // all path with length *previousLevel* have been found
+          break;
         }
-      }
-    }
-    return graph;
-  }
-
-  private void findLadderHelper(Node start, Node end,
-      Graph graph,
-      List<List<String>> totalList,
-      LinkedList<String> currentList) {
-    currentList.add(start.word);
-    if (start == end) {
-      totalList.add(new ArrayList<String>(currentList));
-      currentList.removeLast();
-      return;
-    }
-    // find one in the set
-    Set<Node> nexts = graph.fromNode(start);
-    for (Node next : nexts) {
-      if (!next.visit) {
-        next.visit = true;
-        findLadderHelper(next, end, graph, totalList, currentList);
-        next.visit = false;
-      }
-    }
-    currentList.removeLast();
-  }
-
-  private boolean isOneLetterChanged(String s1, String s2) {
-    if (s1 == null || s2 == null) {
-      return false;
-    }
-    if (s1.length() != s2.length()) {
-      return false;
-    }
-    int count = 0;
-    for (int i = 0; i < s1.length(); i++) {
-      char c1 = s1.charAt(i);
-      char c2 = s2.charAt(i);
-      if (c1 != c2) {
-        count++;
-        if (count == 2) {
-          return false;
+      } else {
+        Set<String> neighbour = neighbours.get(n.str);
+        if (neighbour == null || neighbour.isEmpty()) {
+          continue;
         }
-      }
-    }
-    return true;
-  }
-
-  class Graph {
-
-    Map<Node, Set<Node>> map;
-
-    Graph() {
-      map = new HashMap<Node, Set<Node>>();
-    }
-
-    public void addEdge(Node src, Node dst) {
-      map.get(src).add(dst);
-    }
-
-    public void addNode(Node node) {
-      map.put(node, new HashSet<Node>());
-    }
-
-    public List<Node> getNodes() {
-      return new ArrayList<Node>(map.keySet());
-    }
-
-    public Node getNode(String word) {
-      for (Node n : map.keySet()) {
-        if (n.word.equals(word)) {
-          return n;
+        Set<String> toRemove = new HashSet<String>();
+        for (String word : neighbour) {
+          // if word has been visited before at a smaller level, there is
+          // already
+          // a shorter path from start to word thus we should ignore word so as
+          // to
+          // break infinite loop; if on the same level, we still need to put it
+          // into queue.
+          if (visited.containsKey(word)) {
+            if (n.level + 1 > visited.get(word)) {
+              neighbours.get(word).remove(n.str);
+              toRemove.add(word);
+              continue;
+            }
+          }
+          visited.put(word, n.level + 1);
+          queue.add(new Node(n, word, n.level + 1));
+          neighbours.get(word).remove(n.str);
         }
+        neighbour.removeAll(toRemove);
       }
-      return null;
     }
 
-    public Set<Node> fromNode(Node dst) {
-      return map.get(dst);
-    }
+    return solutions;
   }
 
-  class Node {
+  private void findPath(Node n, List<List<String>> solution) {
+    LinkedList<String> path = new LinkedList<String>();
+    while (n != null) {
+      path.addFirst(n.str);
+      n = n.parent;
+    }
+    solution.add(path);
+  }
 
-    String word;
-    boolean visit;
+  /**
+   * complexity: O(26*str.length*dict.size)=O(L*N)
+   */
+  private Map<String, Set<String>> createNeighbours(Set<String> dict) {
+    Map<String, Set<String>> neighbours = new HashMap<String, Set<String>>();
+    for (String str : dict) {
+      char[] chars = str.toCharArray();
+      for (int i = 0; i < str.length(); i++) {
+        char old = chars[i];
+        for (char c = 'a'; c <= 'z'; c++) {
+          if (c == old) {
+            continue;
+          }
+          chars[i] = c;
+          String newstr = new String(chars);
+          if (dict.contains(newstr)) {
+            Set<String> set = neighbours.get(str);
+            if (set == null) {
+              set = new HashSet<String>();
+              neighbours.put(str, set);
+            }
+            set.add(newstr);
+          }
+        }
+        chars[i] = old;
+      }
+    }
+    return neighbours;
+  }
+
+  private class Node {
+
     Node parent;
+    String str;
+    int level;
 
-    Node(String word, boolean visit) {
-      this.word = word;
-      this.visit = visit;
-    }
-
-    public int hashCode() {
-      return word.hashCode();
-    }
-    
-    public String toString() {
-      return word + ":" + visit;
+    public Node(Node parent, String str, int level) {
+      this.parent = parent;
+      this.str = str;
+      this.level = level;
     }
   }
 }
