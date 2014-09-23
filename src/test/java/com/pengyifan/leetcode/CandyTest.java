@@ -14,12 +14,14 @@ public class CandyTest {
     assertEquals(6, candy.candy(new int[]{5,3,1}));
   }
 
-//  @Test
-//  public void testCandy2() {
-//    int[] ratings = new int[20000];
-//    for(int i=0;i<ratings.length;i++) {
-//      ratings[i] = i+1;
-//    }
-//    assertEquals(6, candy.candy(ratings));
-//  }
+  @Test
+  public void testCandy2() {
+    int[] ratings = new int[20000];
+    int sum = 0;
+    for(int i=0;i<ratings.length;i++) {
+      ratings[i] = i+1;
+      sum += ratings[i];
+    }
+    assertEquals(sum, candy.candy(ratings));
+  }
 }
