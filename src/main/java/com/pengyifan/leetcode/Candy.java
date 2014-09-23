@@ -33,6 +33,7 @@ public class Candy {
         scanRight[i] = scanRight[i + 1] + 1;
       }
     }
+    
     int sum = 0;
     for (int i = 0; i < ratings.length; i++) {
       sum += Math.max(scanLeft[i], scanRight[i]);
