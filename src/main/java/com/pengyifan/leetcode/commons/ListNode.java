@@ -14,7 +14,8 @@ public class ListNode {
   
   public String toString() {
     HashSet<ListNode> set = new HashSet<ListNode>();
-    StringBuilder sb = new StringBuilder(val);
+    StringBuilder sb = new StringBuilder();
+    sb.append(val);
     ListNode p = this;
     set.add(p);
     while(p.next != null) {
