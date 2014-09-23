@@ -5,6 +5,23 @@ import java.util.Stack;
 
 import com.pengyifan.leetcode.commons.TreeNode;
 
+/**
+ * Given a binary tree, return the postorder traversal of its nodes' values.
+ * <p>
+ * For example:
+ * <p>
+ * Given binary tree {1,#,2,3},
+ * 
+ * <pre>
+ *    1
+ *     \
+ *      2
+ *     /
+ *    3
+ * </pre>
+ * 
+ * return [3,2,1].
+ */
 public class BinaryTreePostorderTraversal {
 
   public ArrayList<Integer> postorderTraversal(TreeNode root) {
