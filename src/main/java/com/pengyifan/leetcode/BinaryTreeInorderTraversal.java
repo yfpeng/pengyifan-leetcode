@@ -5,8 +5,25 @@ import java.util.Stack;
 
 import com.pengyifan.leetcode.commons.TreeNode;
 
-
+/**
+ * Given a binary tree, return the inorder traversal of its nodes' values.
+ * <p>
+ * For example: Given binary tree {1,#,2,3},
+ * 
+ * <pre>
+ *    1
+ *     \
+ *      2
+ *     /
+ *    3
+ * </pre>
+ * 
+ * return [1,3,2].
+ * <p>
+ * Note: Recursive solution is trivial, could you do it iteratively?
+ */
 public class BinaryTreeInorderTraversal {
+
   public ArrayList<Integer> inorderTraversal(TreeNode root) {
     ArrayList<Integer> list = new ArrayList<Integer>();
     Stack<TreeNode> s = new Stack<TreeNode>();
