@@ -24,14 +24,14 @@ import com.pengyifan.leetcode.commons.TreeNode;
  * 
  * <pre>
  * [
- *   [3],
+ *   [15,7],
  *   [9,20],
- *   [15,7]
+ *   [3]
  * ]
  */
-public class BinaryTreeLevelOrderTraversalII {
+public class BinaryTreeLevelOrderTraversal {
 
-  public ArrayList<ArrayList<Integer>> levelOrder(TreeNode root) {
+  public ArrayList<ArrayList<Integer>> levelOrderBottom(TreeNode root) {
     ArrayList<ArrayList<Integer>> list = new ArrayList<ArrayList<Integer>>();
     if (root == null) {
       return list;
@@ -51,7 +51,7 @@ public class BinaryTreeLevelOrderTraversalII {
         }
       }
       if (!next.isEmpty()) {
-        list.add(toInteger(next));
+        list.add(0, toInteger(next));
       }
       current = next;
     }
