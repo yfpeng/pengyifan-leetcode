@@ -19,5 +19,8 @@ public class DeleteNodeInALinkedListTest {
     a2.next = a3;
 
     t.deleteNode(a1);
+    assertEquals(1, a1.val);
+    assertEquals(0, a1.next.val);
+    assertEquals(null, a1.next.next);
   }
 }
