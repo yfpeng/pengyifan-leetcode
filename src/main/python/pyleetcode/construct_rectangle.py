@@ -22,7 +22,7 @@ Note:
 """
 
 
-def constructRectangle(area):
+def construct_rectangle(area):
     """
     :type area: int
     :rtype: List[int]
