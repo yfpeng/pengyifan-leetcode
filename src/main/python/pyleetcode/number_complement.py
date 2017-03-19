@@ -19,7 +19,8 @@ Example 2:
     output 0.
 """
 
-def findComplement(num):
+
+def find_complement(num):
     """
     :type num: int
     :rtype: int
@@ -37,5 +38,5 @@ def findComplement(num):
 
 
 def test_find_complement():
-    assert findComplement(5) == 2
-    assert findComplement(1) == 0
+    assert find_complement(5) == 2
+    assert find_complement(1) == 0

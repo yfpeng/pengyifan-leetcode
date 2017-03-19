@@ -20,7 +20,9 @@ Explanation:
 
 The above arrows point to positions where the corresponding bits are different.
 """
-def hammingDistance(x, y):
+
+
+def hamming_distance(x, y):
     """
     :type x: int
     :type y: int
@@ -40,5 +42,6 @@ def hammingDistance(x, y):
             m /= 2
     return n
 
+
 def test_hammingDistance():
-    assert hammingDistance(1, 4) == 2
+    assert hamming_distance(1, 4) == 2

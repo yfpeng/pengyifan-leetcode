@@ -12,7 +12,8 @@ Note:
 
 """
 
-def findWords(words):
+
+def find_words(words):
     """
     :type words: List[str]
     :rtype: List[str]
@@ -39,8 +40,8 @@ def findWords(words):
 def test_find_words():
     input = ["Hello","Alaska","Dad","Peace"]
     expected = ["Alaska","Dad"]
-    assert findWords(input) == expected
+    assert find_words(input) == expected
 
     input = ["asdfghjkl","qwertyuiop","zxcvbnm"]
     expected = ["asdfghjkl","qwertyuiop","zxcvbnm"]
-    assert findWords(input) == expected
+    assert find_words(input) == expected
