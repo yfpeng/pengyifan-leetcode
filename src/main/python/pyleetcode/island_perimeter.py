@@ -7,10 +7,10 @@ height don't exceed 100. Determine the perimeter of the island.
 
 Example:
 
-[[0,1,0,0],
- [1,1,1,0],
- [0,1,0,0],
- [1,1,0,0]]
+    [[0,1,0,0],
+     [1,1,1,0],
+     [0,1,0,0],
+     [1,1,0,0]]
 
 Answer: 16
 Explanation: The perimeter is the 16 yellow stripes in the image below:
@@ -18,6 +18,10 @@ Explanation: The perimeter is the 16 yellow stripes in the image below:
 
 
 def island_perimeter(grid):
+    """
+    :type grid: List[List[int]]
+    :rtype: int
+    """
     row = len(grid)
     col = len(grid[0])
 
