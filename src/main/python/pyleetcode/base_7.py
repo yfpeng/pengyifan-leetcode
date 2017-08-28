@@ -32,3 +32,7 @@ def test_convert_to_base7():
     assert convert_to_base7(100) == '202'
     assert convert_to_base7(-7) == '-10'
     assert convert_to_base7(0) == '0'
+
+
+if __name__ == '__main__':
+    test_convert_to_base7()

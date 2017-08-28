@@ -31,3 +31,6 @@ def min_moves(nums):
 def test_min_moves():
     assert min_moves([1,2,3]) == 3
     assert min_moves([1,2147483647]) == 2147483646
+
+if __name__ == '__main__':
+    test_min_moves()

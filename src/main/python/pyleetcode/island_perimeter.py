@@ -35,7 +35,6 @@ def island_perimeter(grid):
                     inside += 1
                 if i+1 < row and grid[i+1][j] == 1:
                     inside += 1
-    print inside
     return 4 * total - 2 * inside
 
 
@@ -45,3 +44,6 @@ def test_island_perimeter():
             [0,1,0,0],
             [1,1,0,0]]
     assert island_perimeter(grid) == 16
+
+if __name__ == '__main__':
+    test_island_perimeter()

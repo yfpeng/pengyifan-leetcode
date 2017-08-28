@@ -46,3 +46,7 @@ def test_find_words():
     input = ["asdfghjkl","qwertyuiop","zxcvbnm"]
     expected = ["asdfghjkl","qwertyuiop","zxcvbnm"]
     assert find_words(input) == expected
+
+
+if __name__ == '__main__':
+    test_find_words()

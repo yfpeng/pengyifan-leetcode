@@ -45,3 +45,6 @@ def hamming_distance(x, y):
 
 def test_hammingDistance():
     assert hamming_distance(1, 4) == 2
+
+if __name__ == '__main__':
+    test_hammingDistance()

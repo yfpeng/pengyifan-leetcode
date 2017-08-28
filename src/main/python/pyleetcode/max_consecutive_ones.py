@@ -33,3 +33,6 @@ def find_max_consecutive_ones(nums):
 
 def test_find_max_consecutive_ones():
     assert find_max_consecutive_ones([1,1,0,1,1,1]) == 3
+
+if __name__ == '__main__':
+    test_find_max_consecutive_ones()

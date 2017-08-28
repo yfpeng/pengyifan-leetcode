@@ -44,3 +44,6 @@ def find_complement(num):
 def test_find_complement():
     assert find_complement(5) == 2
     assert find_complement(1) == 0
+
+if __name__ == '__main__':
+    test_find_complement()

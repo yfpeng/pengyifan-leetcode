@@ -24,7 +24,6 @@ def reverse_str(s, k):
 
     o = ''
     for idx in range(0, len(s), k):
-        print idx, s[idx:idx+k]
         if idx/k % 2 == 0:
             o += s[idx:idx+k][::-1]
         else:
@@ -35,3 +34,6 @@ def reverse_str(s, k):
 
 def test_reverse_str():
     assert reverse_str('abcdefg', 2) == "bacdfeg"
+
+if __name__ == '__main__':
+    test_reverse_str()

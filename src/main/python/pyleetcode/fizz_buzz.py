@@ -43,3 +43,6 @@ def test_fizz_buzz():
         "FizzBuzz"
     ]
     assert fizz_buzz(15) == expected
+
+if __name__ == '__main__':
+    test_fizz_buzz()

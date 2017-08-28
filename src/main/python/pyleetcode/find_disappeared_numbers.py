@@ -20,7 +20,7 @@ def find_disappeared_numbers(nums):
     :type nums: List[int]
     :rtype: List[int]
     """
-    for i in xrange(len(nums)):
+    for i in range(len(nums)):
         index = abs(nums[i]) - 1
         nums[index] = - abs(nums[index])
 
@@ -29,3 +29,7 @@ def find_disappeared_numbers(nums):
 
 def test_find_disappeared_numbers():
     assert find_disappeared_numbers([4,3,2,7,8,2,3,1]) == [5,6]
+
+
+if __name__ == '__main__':
+    test_find_disappeared_numbers()

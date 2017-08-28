@@ -55,3 +55,6 @@ def next_greater_element(findNums, nums):
 def test_next_greater_element():
     assert next_greater_element([4, 1, 2], [1, 3, 4, 2]) == [-1, 3, -1]
     assert next_greater_element([2, 4], [1, 2, 3, 4]) == [3, -1]
+
+if __name__ == '__main__':
+    test_next_greater_element()

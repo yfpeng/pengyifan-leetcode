@@ -48,3 +48,6 @@ def test_detect_capital_use():
     assert detect_capital_use('FlaG') == False
     assert detect_capital_use('leetcode') == True
     assert detect_capital_use('Google') == True
+
+if __name__ == '__main__':
+    test_detect_capital_use()

@@ -59,3 +59,7 @@ def test_find_conent_children():
     assert find_content_children([1,2], [1,2,3]) == 2
     assert find_content_children([1,2,3], []) == 0
     assert find_content_children([10,9,8,7], [5,6,7,8]) == 2
+
+
+if __name__ == '__main__':
+    test_find_conent_children()
